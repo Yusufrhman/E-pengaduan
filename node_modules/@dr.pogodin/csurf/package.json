@@ -1,0 +1,50 @@
+{
+  "name": "@dr.pogodin/csurf",
+  "description": "CSRF token middleware for ExpressJS",
+  "version": "1.13.0",
+  "license": "MIT",
+  "repository": "github:birdofpreyru/csurf",
+  "bugs": {
+    "url": "https://github.com/birdofpreyru/csurf/issues"
+  },
+  "homepage": "https://dr.pogodin.studio/docs/csurf",
+  "main": "index.js",
+  "dependencies": {
+    "cookie": "^0.5.0",
+    "cookie-signature": "^1.2.0",
+    "http-errors": "^2.0.0",
+    "rndm": "1.2.0",
+    "tsscmp": "1.0.6",
+    "uid-safe": "2.1.5"
+  },
+  "devDependencies": {
+    "body-parser": "1.20.2",
+    "connect": "3.7.0",
+    "cookie-parser": "1.4.6",
+    "cookie-session": "2.0.0",
+    "eslint": "^8.43.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "mocha": "10.2.0",
+    "nyc": "15.1.0",
+    "supertest": "6.3.3"
+  },
+  "engines": {
+    "node": ">= 16"
+  },
+  "scripts": {
+    "lint": "eslint --ext js .",
+    "mocha": "mocha --check-leaks --reporter spec --bail test/",
+    "test": "npm run lint && npm run mocha",
+    "test-cov": "nyc --reporter=html --reporter=text npm test"
+  },
+  "keywords": [
+    "csrf",
+    "tokens",
+    "middleware",
+    "express",
+    "javascript",
+    "tools",
+    "utils"
+  ]
+}

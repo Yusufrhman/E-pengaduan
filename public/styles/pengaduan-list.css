@@ -1,0 +1,67 @@
+#search-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  top: 0;
+  position: sticky;
+  z-index: 1000;
+  background-color: var(--warna-border);
+}
+
+#search-form input {
+  width: 100%;
+}
+
+.accordion-collapse {
+  transition: none;
+}
+
+h2 {
+  margin: 0;
+}
+
+thead {
+  position: sticky;
+  top: calc(2rem + 2rem + 0.5rem);
+  z-index: 100;
+  background-color: var(--warna-border);
+}
+
+table {
+  margin: auto;
+  width: 100%;
+  padding: 1rem;
+}
+.pengaduan-accordion-show {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.pengaduan-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.status-pengaduan {
+  text-align: center;
+  width: 5rem;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+.terkirim {
+  background-color: rgb(255, 244, 222);
+  color: rgb(255, 160, 28);
+}
+.diproses {
+  background-color: rgb(200, 234, 255);
+  color: rgb(0, 102, 219);
+}
+.selesai {
+  background-color: rgb(222, 255, 243);
+  color: rgb(8, 164, 101);
+}
+.ditolak {
+  background-color: rgb(255, 218, 218);
+  color: rgb(151, 0, 0);
+}

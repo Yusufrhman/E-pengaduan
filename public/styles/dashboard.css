@@ -1,0 +1,88 @@
+main {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 2rem;
+}
+body {
+  font-family: inherit;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/assets/images/desa-gelap.png");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+.container {
+  padding: 0;
+  height: 39.5rem;
+  overflow: scroll;
+  border-radius: 10px;
+  background-color: var(--warna-border);
+  z-index: 1;
+}
+
+.table > :not(caption) > * > * {
+  background-color: transparent;
+}
+
+#left-nav {
+  background-color: var(--warna-background);
+  height: 39.5rem;
+  box-shadow: 0px 0px 25px rgba(25, 25, 25, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+#left-nav ul {
+  display: flex;
+  flex-direction: column;
+}
+#left-nav ul li {
+  padding: 0.85rem 1rem;
+  transition: all 0.2s;
+}
+#left-nav ul li.active {
+  background-color: rgb(177, 214, 254);
+}
+#left-nav ul li:hover {
+  background-color: rgb(196, 225, 255);
+  cursor: pointer;
+}
+#left-nav-profile {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.35rem;
+}
+#left-nav-profile div {
+  display: flex;
+  flex-direction: column;
+}
+#left-nav-profile h3,
+#left-nav-profile p {
+  font-size: 0.9rem;
+}
+#left-nav-profile p {
+  color: rgb(90, 90, 90);
+}
+#left-nav-profile img {
+  width: 4rem;
+  height: 4rem;
+}
+.left-nav-button {
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 400;
+}
+.accordion-button:not(.collapsed) {
+  color: var(--bs-accordion-active-color);
+  background-color: var(--warna-background);
+  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0
+    var(--bs-accordion-border-color);
+}
+/* @media (max-width: 991px) {
+  #left-nav {
+    width: max-content;
+  }
+} */

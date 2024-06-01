@@ -1,0 +1,60 @@
+<%- include("../../shared/includes/head.ejs", {title: "E-pengaduan: edit-pengaduan"}) %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/styles/dashboard.css">
+<link rel="stylesheet" href="/styles/form-pengaduan.css">
+<script src="/form-pengaduan.js" defer></script>
+
+
+
+</head>
+
+<body>
+  <%- include("../../shared/includes/header.ejs") %>
+  <%- include("../../shared/includes/nav-bar.ejs") %>
+  <main>
+    <%- include("../../shared/includes/left-nav-dashboard.ejs", active = "histori") %>
+
+    <div class="container">
+      <form class="form" method="post" action="/user/edit-pengaduan/<%= pengaduan.id_pengaduan %>?_csrf=<%= locals.csrfToken %>" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+        <h2>Edit Laporan!</h2>
+        <div class="input-place">
+          <label for="title">Judul</label>
+          <input type="text" id="title" name="title" value="<%= pengaduan.judul_pengaduan %>" required>
+        </div>
+        <div class="input-place">
+          <label for="description">Deskripsi</label>
+          <textarea name="description" id="description" cols="30" rows="10" style="resize: none;"><%= pengaduan.deskripsi_pengaduan %></textarea>
+        </div>
+        <div class="input-place">
+          <label for="category">Kategori</label>
+          <select name="category" id="category">
+            <option value="Keamanan" selected><%= pengaduan.kategori_pengaduan %></option>
+            <option value="Keamanan">Keamanan</option>
+            <option value="Lalu Lintas">Lalu Lintas</option>
+            <option value="Infrastuktur">Infrastuktur</option>
+            <option value="Fasilitas Umum">Fasilitas Umum</option>
+          </select>
+        </div>
+        <label for="pengaduan-image">Foto</label>
+        <div class="input-place" style="display: flex; align-items: center;">
+          <img src="<%= pengaduan.foto_pengaduan %>" alt="" id="pengaduan-image" style="height: 5rem; width: 7.5rem; object-fit: cover;">
+          <input type="file" id="pengaduan-image-picker" name="pengaduan-image-picker" accept="image/png, image/jpeg" style="height: 3rem;" />
+        </div>
+        <div class="input-place">
+          <label for="location">Lokasi</label>
+          <textarea name="location" id="location" cols="30" rows="10" style="resize: none;"><%= pengaduan.lokasi_pengaduan %></textarea>
+        </div>
+        <div style="display: flex; gap: 1.25rem; align-items: center;">
+          <a href="/user/pengaduan-terkirim" class="link-button">Batal</a>
+          <button type="submit" class="button">Ubah!</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+  <%- include("../../shared/includes/footer.ejs") %>
+</body>
+
+</html>

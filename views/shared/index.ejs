@@ -1,0 +1,68 @@
+<%- include("includes/head.ejs", {title: "E-pengaduan"}) %>
+<link rel="stylesheet" href="/styles/home.css">
+</head>
+
+<body>
+  <%- include("includes/header.ejs") %>
+  <main>
+    <div id="main-landing">
+      <section id="main-landing-content">
+        <p id="main-landing-content-attribute">Submit Now - <span>Resolve Issues!</span></p>
+        <h1>Speak Out Today!</h1>
+        <p id="main-landing-content-text">
+          Platform online yang memungkinkan warga untuk
+          melaporkan masalah atau keluhan kepada
+          pemerintah secara online!</p>
+        <ul id="main-landing-button">
+          <% if (locals.isLoggedIn && locals.userData.kategori_user == '1') { %>
+          <li><a href="admin/pengaduan-terkirim" class="reverse-button low-opacity">Lihat Laporan!</a></li>
+          <li><a href="admin/tambah-berita" class="button">Tambah Berita!</a></li>
+          <% } else {%>
+            <li><a href="user/pengaduan-terkirim" class="reverse-button low-opacity">Lihat Laporan</a></li>
+            <li><a href="user/tambah-pengaduan" class="button">Laporkan!</a></li>
+          <% } %>
+
+        </ul>
+      </section>
+    </div>
+    <div id="impact">
+      <h2>Our Impact</h2>
+      <ul id="impact-list">
+        <li class="impact-list-item">
+          <h3><%= pengaduanLength %></h3>
+          <p>Reports Sent</p>
+        </li>
+        <li class="impact-list-item">
+          <h3><%= pengaduanSelesaiLength %></h3>
+          <p>Issues Resolved</p>
+        </li>
+        <li class="impact-list-item">
+          <h3><%= totalUser %></h3>
+          <p>Total Users</p>
+        </li>
+      </ul>
+    </div>
+    <div id="aduan-terbaru">
+      <h2>Berita Terbaru</h2>
+      <ul id="aduan-terbaru-list">
+        <% listBerita.forEach(berita => { %>
+        <li class="aduan-terbaru-list-item" style="background-color: rgb(255, 254, 252);">
+          <a href=<%= 'berita/' + berita.id_berita %>>
+            <img src="<%= berita.image_url %>" alt="">
+            <section class="aduan-terbaru-content">
+              <h3 style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;overflow: hidden;"><%= berita.judul_berita %></h3>
+              <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;overflow: hidden;"><%= berita.deskripsi_berita %></p>
+            </section>
+          </a>
+        </li>
+        <% }) %>
+
+
+      </ul>
+      <a href="/berita" class="link-button" style="margin-top: 1rem;">View More..</a>
+    </div>
+  </main>
+  <%- include("includes/footer.ejs") %>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<header>
+  <p><a href="/" id="logo"><img src="/assets/images/webicon.png" style="height: 6.25rem;" alt="" srcset=""></a></p>
+  <ul id="nav-list">
+    <li><a href="/" class="nav-list-item">Beranda</a></li>
+    <li>
+      <% if (locals.isLoggedIn && locals.userData.kategori_user == '1') { %>
+      <a href="/admin/tambah-berita" class="nav-list-item">Tambah Berita</a>
+      <% } else {%>
+      <a href="/user/tambah-pengaduan" class="nav-list-item">Pengaduan</a>
+      <% } %>
+    </li>
+    <li><a href="/berita" class="nav-list-item">Berita</a></li>
+    <% if(locals.isLoggedIn) {%>
+    <li><a href="/user/edit-profil" class="nav-list-item">Akun</a></li>
+    <li>
+      <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+        <button class="reverse-button">Keluar</button>
+      </form>
+    </li>
+    <% }else {%>
+    <li>
+      <ul id="header-button">
+        <li><a href="/login" class="button">Masuk</a></li>
+        <li><a href="/signup" class="button">Daftar</a></li>
+      </ul>
+    </li>
+    <% } %>
+  </ul>
+  <div class="hamburger-container">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </div>
+</header>

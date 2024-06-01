@@ -1,0 +1,50 @@
+.container {
+  padding: 1.25rem;
+}
+
+h2 {
+  color: var(--warna-biru-tua);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.input-place {
+  margin-bottom: 0.5rem;
+}
+
+.input-place label {
+  display: block;
+  margin-bottom: 1px;
+  font-size: 1.15rem;
+}
+
+.input-place input,
+.input-place textarea,
+.input-place select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+textarea#description {
+  height: 6rem;
+}
+.input-place textarea {
+  height: 5rem;
+}
+.button {
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: var(--warna-border2);
+}
+#change-auth {
+  color: var(--warna-abu);
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 0.85rem;
+}

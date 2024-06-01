@@ -1,0 +1,59 @@
+<%- include("../../shared/includes/head.ejs", {title: "E-pengaduan: tambahkan pengaduan"}) %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/styles/dashboard.css">
+<link rel="stylesheet" href="/styles/form-pengaduan.css">
+<script src="/form-pengaduan.js" defer></script>
+
+
+
+</head>
+
+<body>
+  <%- include("../../shared/includes/header.ejs") %>
+  <%- include("../../shared/includes/nav-bar.ejs") %>
+  <main>
+    <%- include("../../shared/includes/left-nav-dashboard.ejs", active = "tambah") %>
+    <div class="container">
+      <form class="form" action="tambah-pengaduan?_csrf=<%= locals.csrfToken %>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+
+        <% if (pengaduanData) { %>
+        <p id="error-message"><%= pengaduanData.message %>!</p>
+        <% } %>
+        <h2>Ajukan Laporan!</h2>
+        <div class="input-place">
+          <label for="title">Judul</label>
+          <input type="text" id="title" name="title" required>
+        </div>
+        <div class="input-place">
+          <label for="description">Deskripsi</label>
+          <textarea name="description" id="description" cols="30" rows="10" style="resize: none;"></textarea>
+        </div>
+        <div class="input-place">
+          <label for="category">Kategori</label>
+          <select name="category" id="category">
+            <option value="Keamanan">Keamanan</option>
+            <option value="Lalu Lintas">Lalu Lintas</option>
+            <option value="Infrastuktur">Infrastuktur</option>
+            <option value="Fasilitas Umum">Fasilitas Umum</option>
+          </select>
+        </div>
+
+        <label for="pengaduan-image">Foto</label>
+        <div class="input-place" style="display: flex; align-items: center;">
+          <img src="/images/nothing.jpeg" alt="" id="pengaduan-image" style="height: 5rem; width: 7.5rem; object-fit: cover;">
+          <input type="file" id="pengaduan-image-picker" name="pengaduan-image-picker" accept="image/png, image/jpeg" style="height: 3rem;" />
+        </div>
+        <div class="input-place">
+          <label for="location">Lokasi</label>
+          <textarea name="location" id="location" cols="30" rows="10" style="resize: none;"></textarea>
+        </div>
+        <button type="submit" class="button">Laporkan!</button>
+      </form>
+    </div>
+  </main>
+  <%- include("../../shared/includes/footer.ejs") %>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<%- include("../shared/includes/head.ejs", {title: "E-pengaduan: sign-up"}) %>
+<link rel="stylesheet" href="styles/auth.css" />
+</head>
+
+<body>
+  <%- include("../shared/includes/header.ejs") %>
+  <%- include("../shared/includes/nav-bar.ejs") %>
+
+  <main>
+    <div class="auth-container">
+      <form class="auth-form" action="/signup" method="post">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+        <h2>Buat Akun</h2>
+        <% if(signupData) {%>
+        <p id="error-message"><%= signupData.message %>!</p>
+        <div class="input-place">
+          <label for="name">Nama</label>
+          <input type="text" id="name" name="name" value="<%= signupData.name %>" required>
+        </div>
+        <div class="input-place">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" value="<%= signupData.email %>" required>
+        </div>
+        <div class="input-place">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" value="<%= signupData.password %>" required>
+        </div>
+        <div class="input-place">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" value="<%= signupData.confirmPassword %>" required>
+        </div>
+        <% } else { %>
+        <div class="input-place">
+          <label for="name">Nama</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="input-place">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" required>
+        </div>
+        <div class="input-place">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-place">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+        <% } %>
+        <button type="submit" class="button">Daftar</button>
+      </form>
+      <p id="change-auth">Sudah punya akun? <a href="/login" class="link-button">Masuk</a></p>
+    </div>
+  </main>
+</body>
+
+</html>

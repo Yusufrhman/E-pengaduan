@@ -1,0 +1,60 @@
+<%- include("includes/head.ejs", {title: "E-pengaduan: berita"}) %>
+<link rel="stylesheet" href="/styles/berita.css">
+</head>
+
+<body>
+  <%- include("includes/header.ejs") %>
+  <%- include("includes/nav-bar.ejs") %>
+
+  <main>
+    <section id="card">
+      <ul>
+        <% listBerita.forEach(berita => { %>
+        <li>
+          <img src=<%= berita.image_url %> alt="" />
+          <div class="card-content">
+            <div>
+              <h2 style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;overflow: hidden;"><%= berita.judul_berita %></h2>
+              <p style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;overflow: hidden;">
+                <%= berita.deskripsi_berita %></p>
+            </div>
+            <div class="link">
+              <a href=<%= 'berita/' + berita.id_berita %> class="link-button">View &#x2192</a>
+            </div>
+          </div>
+        </li>
+        <% }) %>
+
+      </ul>
+    </section>
+    <div style="padding: 2rem 1rem; display: flex; align-items: center; justify-content: center; background-color: transparent;">
+      <ul class="pagination" style="position: sticky; top: 32rem;">
+        <li class="page-item">
+
+          <a class="page-link" href="berita?page=<%= currentPage <= 1 ? 1 : currentPage - 1 %>" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        <% for( let i = 0; i < totalPage; i++ ) { %>
+        <% if (currentPage-1 == i) { %>
+        <li class="page-item active"><a class="page-link" href="berita?page=<%= i+1 %>"><%= i+1 %></a></li>
+        <% } else { %>
+        <li class="page-item"><a class="page-link" href="berita?page=<%= i+1 %>"><%= i+1 %></a></li>
+        <% } %>
+        <% } %>
+
+        <li class="page-item">
+          <a class="page-link" href="berita?page=<%= currentPage >= totalPage ? totalPage : currentPage + 1 %>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+
+        </li>
+      </ul>
+    </div>
+    </div>
+  </main>
+  <%- include("includes/footer.ejs") %>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<div id="left-nav">
+  <ul>
+    <a href="/user/edit-profil" style="height: 100%">
+      <li id="left-nav-profile" <% if (active === "profile") { %>class="active" <% } %>>
+        <div id="left-nav-profile-img" style="height: 4rem; width: 4rem;">
+          <div id="left-nav-profile-image-container" style="height: 4rem; width: 4rem;">
+            <img id="left-nav-profile-image" style="height: 4rem; object-fit: cover;" src="<%= locals.userData.image_url %>" alt="<%= locals.userData.nama_user %>" />
+          </div>
+        </div>
+        <div>
+          <h3 class="left-nav-button"><%= locals.userData.nama_user %></h3>
+          <p>Profil</p>
+        </div>
+      </li>
+    </a>
+    <% if(locals.userData.kategori_user === '1') {%>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="font-weight: bold;">
+            Pengaduan
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse <%- show === 'pengaduan' ? 'show': '' %>" aria-labelledby="flush-headingOne">
+          <div class="accordion-body" style="padding: 0;">
+            <a href="/admin/pengaduan-terkirim" style="height: 100%">
+              <li <% if (active === "terkirim") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-paper-plane"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Terkirim</h3>
+              </li>
+            </a>
+            <a href="/admin/pengaduan-diproses" style="height: 100%">
+              <li <% if (active === "diproses") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-bars-progress"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Diproses</h3>
+              </li>
+            </a>
+            <a href="/admin/pengaduan-selesai" style="height: 100%">
+              <li <% if (active === "selesai") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-check-to-slot"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Selesai</h3>
+              </li>
+            </a>
+            <a href="/admin/pengaduan-ditolak" style="height: 100%">
+              <li <% if (active === "ditolak") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-rectangle-xmark"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Ditolak</h3>
+              </li>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" style="font-weight: bold;">
+            Berita
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse <%- show === 'berita' ? 'show': '' %>" aria-labelledby=" flush-headingTwo">
+          <div class="accordion-body" style="padding: 0;">
+            <a href="/admin/tambah-berita" style="height: 100%">
+              <li <% if (active === "tambah") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-square-plus"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Tambah</h3>
+              </li>
+            </a>
+            <a href="/admin/list-berita" style="height: 100%">
+              <li <% if (active === "list-berita") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-table-list"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">List</h3>
+              </li>
+            </a>
+            <a href="/admin/arsip-berita" style="height: 100%">
+              <li <% if (active === "arsip-berita") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-box-archive"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Arsip</h3>
+              </li>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <% } else { %>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="font-weight: bold;">
+            Pengaduan
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse <%- show === 'pengaduan' ? 'show': '' %>" aria-labelledby="flush-headingOne">
+          <div class="accordion-body" style="padding: 0;">
+            <a href="/user/tambah-pengaduan">
+              <li <% if (active === "tambah") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-square-plus"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Tambah</h3>
+              </li>
+            </a>
+            <a href="/user/pengaduan-terkirim" style="height: 100%">
+              <li <% if (active === "terkirim") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-paper-plane"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Terkirim</h3>
+              </li>
+            </a>
+            <a href="/user/pengaduan-diproses" style="height: 100%">
+              <li <% if (active === "diproses") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-bars-progress"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Diproses</h3>
+              </li>
+            </a>
+            <a href="/user/pengaduan-selesai" style="height: 100%">
+              <li <% if (active === "selesai") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-check-to-slot"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Selesai</h3>
+              </li>
+            </a>
+            <a href="/user/pengaduan-ditolak" style="height: 100%">
+              <li <% if (active === "ditolak") { %>class="active" <% } %> style="display: flex;">
+                <i class="fa-solid fa-rectangle-xmark"></i>
+                <h3 class="left-nav-button" style="padding-left: 1rem;">Ditolak</h3>
+              </li>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </ul>
+</div>

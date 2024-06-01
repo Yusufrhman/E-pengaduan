@@ -1,0 +1,105 @@
+<%- include("../shared/includes/head.ejs", {title: "E-pengaduan: list-berita"}) %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" href="/styles/dashboard.css">
+<link rel="stylesheet" href="/styles/list-berita.css">
+<script src="/admin-actions.js" defer></script>
+
+
+
+<meta name="csrf-token" content="<%= locals.csrfToken %>">
+</head>
+
+<body>
+  <%- include("../shared/includes/header.ejs") %>
+  <%- include("../shared/includes/nav-bar.ejs") %>
+  <main>
+    <%- include("../shared/includes/left-nav-dashboard.ejs", active = active, show = show) %>
+    <div class="table-responsive container fluid">
+      <form action="" method="get" id="search-form">
+        <h4>List Berita</h4>
+        <section style="display: flex; width: 40%;">
+          <input type="text" id="search" name="search" placeholder="Cari sesuai judul..." style="width: 100%; padding: 10px;" value = <%= searchQuery %>>
+          <button type="submit" class="button">Search</button>
+        </section>
+      </form>
+      <table class="table table-striped" style="min-height: 30rem;">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%;">No</th>
+            <th scope="col" style="width: 10%;">Tanggal</th>
+            <th scope="col" style="width: 25%;">Judul</th>
+            <th scope="col" style="width: 35%;">Deskripsi</th>
+            <th scope="col" style="width: 10%;">Status</th>
+            <th scope="col" style="width: 17.5%;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for( let i = 0; i < listBerita.length; i++ ) { %>
+          <% if (i%2 !== 1) { %>
+          <tr style="background-color: white;">
+            <% } else {%>
+          <tr>
+            <% } %>
+            <th scope="row"><%= i + 1 + (+currentPage-1)*10 %> </th>
+            <td><%= listBerita[i].waktu_berita%></td>
+            <td><%= listBerita[i].judul_berita%></td>
+            <td><%= listBerita[i].deskripsi_berita%></td>
+            <td>
+              <% if (listBerita[i].status === 'published') { %>
+              <p id="published">
+                <% } else {%>
+              <p id="archived">
+                <% } %>
+                <%= listBerita[i].status%>
+              </p>
+            </td>
+            <td>
+
+              <a href="edit-berita/<%= listBerita[i].id_berita %>" class="reverse-button"><i class="fa-solid fa-pen-to-square"></i></a>
+              <% if (listBerita[i].status === 'published') { %>
+              <button class="reverse-button" onclick="changeStatusBerita(this, '<%= listBerita[i].id_berita%>', 'arsipkan')"><i class="fa-solid fa-eye-slash"></i></button>
+
+              <% } else {%>
+              <button class="reverse-button" onclick="changeStatusBerita(this, '<%= listBerita[i].id_berita%>', 'tampilkan')"><i class="fa-solid fa-eye"></i></button>
+
+              <% } %>
+              <button class="reverse-button" onclick="deleteBerita(this, '<%= listBerita[i].id_berita%>')"><i class="fa-solid fa-trash" style="color: rgb(255, 0, 0);"></i></button>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <div style="padding: 2rem 1rem; display: flex; align-items: center; justify-content: center; background-color: transparent;">
+        <ul class="pagination" style="position: sticky; top: 32rem;">
+          <li class="page-item">
+
+            <a class="page-link" href="<%= active %>?page=<%= currentPage <= 1 ? 1 : currentPage - 1 %>&search=<%= searchQuery %>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+
+          <% for( let i = 0; i < totalPage; i++ ) { %>
+          <% if (currentPage-1 == i) { %>
+          <li class="page-item active"><a class="page-link" href="<%= active %>?page=<%= i+1 %>&search=<%= searchQuery %>"><%= i+1 %></a></li>
+          <% } else { %>
+          <li class="page-item"><a class="page-link" href="<%= active %>?page=<%= i+1 %>&search=<%= searchQuery %>"><%= i+1 %></a></li>
+          <% } %>
+          <% } %>
+
+          <li class="page-item">
+            <a class="page-link" href="<%= active %>?page=<%= currentPage >= totalPage ? totalPage : currentPage + 1 %>&search=<%= searchQuery %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <%- include("../shared/includes/footer.ejs") %>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+#content h1 {
+  font-size: 6rem;
+  margin: 0;
+  color: var(--warna-background);
+  text-shadow: var(--warna-biru-tua) 2px 2px 5px;
+}

@@ -1,0 +1,167 @@
+<%- include("./includes/head.ejs", {title: "E-pengaduan: Histori pengaduan"}) %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/styles/form.css">
+
+<link rel="stylesheet" href="/styles/dashboard.css">
+<link rel="stylesheet" href="/styles/pengaduan-list.css">
+
+<% if (userData.kategori_user =='0') { %>
+
+<script src="/delete-pengaduan.js" defer></script>
+<% } %>
+<% if (userData.kategori_user == '1') { %>
+<script src="/admin-actions.js" defer></script>
+<% } %>
+<meta name="csrf-token" content="<%= locals.csrfToken %>">
+</head>
+
+<body>
+  <%- include("./includes/header.ejs") %>
+  <%- include("./includes/nav-bar.ejs") %>
+  <main>
+    <%- include("./includes/left-nav-dashboard.ejs", active = pengaduanStatus, show = show) %>
+    <div class="table-responsive container fluid">
+      <form action="" method="get" id="search-form">
+        <% if (userData.kategori_user === '1') { %>
+        <h2>Pengaduan</h2>
+        <% } else {%>
+        <h2>Pengaduan saya</h2>
+        <% } %>
+        <section style="display: flex; width: 40%;">
+          <input type="text" id="search" name="search" placeholder="Cari sesuai judul..." style="width: 100%; padding: 10px;" value=<%= searchQuery %>>
+          <button type="submit" class="button">Search</button>
+        </section>
+      </form>
+      <table class="table accordion table-hover" style="min-height: 30rem; margin-bottom: -0.5rem;">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%;">No</th>
+            <th scope="col" style="width: 15%;">Waktu</th>
+            <% if (userData.kategori_user === '1') { %>
+            <th scope="col" style="width: 20%;">Pengirim</th>
+            <% }%>
+            <th scope="col" style="width: 20%;">Judul</th>
+            <th scope="col" style="width: 15%;">Kategori</th>
+            <th scope="col" style="width: 27%;">Lokasi</th>
+            <th scope="col" style="width: 10%;">Status</th>
+            <% if (pengaduanStatus == 'terkirim' || (pengaduanStatus == 'diproses' && userData.kategori_user == '1' )) { %>
+            <th scope="col" colspan="2" style="width: 8%;"></th>
+            <% } %>
+          </tr>
+        </thead>
+        <tbody>
+          <% let i = 1; let color = "blue" %>
+
+          <% for(pengaduan of listPengaduan) { %>
+          <% if (i%2===1) { %>
+          <tr style="background-color: rgb(242, 242, 242);">
+            <% } else {%>
+          <tr>
+            <% } %>
+            <th scope="row" data-bs-toggle="collapse" data-bs-target="#r<%= i %>" data-bs-parent="false"><%= i + (+currentPage-1)*10 %> <i class="bi bi-chevron-down"></i></th>
+            <td data-bs-toggle="collapse" data-bs-target="#r<%= i %>" data-bs-parent="false"><%= pengaduan.waktu_pengaduan %></td>
+            <% if (userData.kategori_user === '1') { %>
+            <td data-bs-toggle="collapse" data-bs-target="#r<%= i %>" data-bs-parent="false"><%= pengaduan.nama_pengadu %></td>
+            <% }%>
+            <td data-bs-toggle="collapse" data-bs-target="#r<%= i %>" data-bs-parent="false"><%= pengaduan.judul_pengaduan %></td>
+            <td data-bs-toggle="collapse" data-bs-target="#r<%= i %>" data-bs-parent="false"><%= pengaduan.kategori_pengaduan %></td>
+            <td data-bs-toggle="collapse" data-bs-target="#r<%= i %>" data-bs-parent="false"><%= pengaduan.lokasi_pengaduan %></td>
+
+            <td data-bs-toggle="collapse" data-bs-target="#r<%= i %>" data-bs-parent="false">
+              <p class="status-pengaduan <%= pengaduan.status_pengaduan %>"><%= pengaduan.status_pengaduan %></p>
+            </td>
+            <% if (userData.kategori_user === '1') { %>
+            <% if (pengaduanStatus != 'terkirim') { %>
+            <% if (pengaduanStatus == 'diproses') { %>
+            <td style="padding-right: 0;">
+              <a class="reverse-button tolak-button" onclick="changeStatusPengaduan(this, '<%= pengaduan.id_pengaduan%>', 'ditolak')">
+                <p style="color: red;">Tolak</p>
+              </a>
+            </td>
+            <td>
+              <a class="reverse-button selesai-button" onclick="changeStatusPengaduan(this, '<%= pengaduan.id_pengaduan%>', 'selesai')">
+                Selesai
+              </a>
+            </td>
+            <% } %>
+            <% } else { %>
+            <td style="padding-right: 0;">
+              <a class="reverse-button tolak-button" onclick="changeStatusPengaduan(this, '<%= pengaduan.id_pengaduan%>', 'ditolak')">
+                <p style="color: red;">Tolak</p>
+              </a>
+            </td>
+            <td>
+              <a class="reverse-button proses-button" onclick="changeStatusPengaduan(this, '<%= pengaduan.id_pengaduan%>', 'diproses')">
+                Proses
+              </a>
+            </td>
+            <% } %>
+            <% } else {%>
+            <% if (pengaduanStatus != 'terkirim') { %>
+
+            <% } else { %>
+            <td style="padding-right: 0;">
+              <button class="reverse-button delete-button" data-pengaduanid='<%= pengaduan.id_pengaduan %>'>
+                <i class="fa fa-trash-o" style="font-size:1.25rem;color:red;"></i>
+              </button>
+            </td>
+            <td>
+              <a class="reverse-button" href="pengaduan-saya/<%= pengaduan.id_pengaduan %>/edit">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+            </td>
+            <% } %>
+
+            <% } %>
+
+          </tr>
+          <% if (i%2===1) { %>
+          <tr style="background-color: rgb(239, 239, 239);" class="collapse accordion-collapse" id="r<%= i %>">
+            <% } else {%>
+          <tr class="collapse accordion-collapse" id="r<%= i %>">
+            <% } %>
+            <td colspan="4">
+              <img src="<%= pengaduan.foto_pengaduan %>" alt="<%= pengaduan.judul_pengaduan %>" class="pengaduan-image">
+            </td>
+            <td colspan="5" %>>
+              <p class="pengaduan-description"><%= pengaduan.deskripsi_pengaduan %></p>
+            </td>
+          </tr>
+          <% i++; %>
+          <% } %>
+        </tbody>
+      </table>
+      <div style="padding: 2rem 1rem; display: flex; align-items: center; justify-content: center; background-color: transparent;">
+        <ul class="pagination" style="position: sticky; top: 32rem;">
+          <li class="page-item">
+
+            <a class="page-link" href="pengaduan-<%= pengaduanStatus %>?page=<%= currentPage <= 1 ? 1 : currentPage - 1 %>&search=<%= searchQuery %>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+
+          <% for( let i = 0; i < totalPage; i++ ) { %>
+          <% if (currentPage-1 == i) { %>
+          <li class="page-item active"><a class="page-link" href="pengaduan-<%= pengaduanStatus %>?page=<%= i+1 %>&search=<%= searchQuery %>"><%= i+1 %></a></li>
+          <% } else { %>
+          <li class="page-item"><a class="page-link" href="pengaduan-<%= pengaduanStatus %>?page=<%= i+1 %>&search=<%= searchQuery %>"><%= i+1 %></a></li>
+          <% } %>
+          <% } %>
+
+          <li class="page-item">
+            <a class="page-link" href="pengaduan-<%= pengaduanStatus %>?page=<%= currentPage >= totalPage ? totalPage : currentPage + 1 %>&search=<%= searchQuery %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <%- include("./includes/footer.ejs") %>
+</body>
+
+</html>

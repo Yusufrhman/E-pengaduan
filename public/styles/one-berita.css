@@ -1,0 +1,40 @@
+main {
+  text-align: center;
+}
+#berita-content {
+  margin-top: 2rem;
+  text-align: justify;
+  white-space: pre-wrap;
+}
+#berita-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 0 auto;
+  min-width: 20rem;
+  width: 60vw;
+}
+#berita-head section {
+  text-align: left;
+}
+
+#berita-head section h3 {
+  color: var(--warna-biru-tua);
+}
+#berita-head section h4 {
+  color: var(--warna-biru);
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+/* #berita-head {
+    display: flex;
+    align-items: center;
+} */
+#berita-image {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+#tanggal {
+  color: rgb(158, 158, 158);
+}

@@ -1,0 +1,87 @@
+<%- include("../../shared/includes/head.ejs", {title: "E-pengaduan: profile"}) %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/styles/dashboard.css">
+<link rel="stylesheet" href="/styles/form.css">
+<link rel="stylesheet" href="/styles/edit-profile.css">
+
+
+<script src="/edit-profile.js" defer></script>
+
+</head>
+
+<body>
+  <%- include("../../shared/includes/header.ejs") %>
+  <%- include("../../shared/includes/nav-bar.ejs") %>
+  <main>
+    <%- include("../../shared/includes/left-nav-dashboard.ejs", active = "profile") %>
+
+    <div class="container">
+      <div id="content">
+
+        <form action="/user/edit-profil?_csrf=<%= locals.csrfToken %>" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+
+          <h4>Edit Profil</h4>
+          <div id="profile-img">
+            <div id="profile-image-container">
+              <img id="profile-image" src="<%= locals.userData.image_url %>" alt="<%= locals.userData.nama_user %>" />
+            </div>
+            <button id="profile-image-button"><i class="fa fa-camera"></i></button>
+            <input type="file" id="profile-image-input" name="profile-image-input" accept="image/png, image/jpeg" hidden />
+          </div>
+
+          <div class="input-place">
+            <label for="name">Nama</label>
+            <input type="text" name="name" id="name" value="<%= locals.userData.nama_user %>">
+          </div>
+
+          <div class="input-place">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value='<%= locals.userData.email_user %>'>
+          </div>
+
+          <div id="input-flex">
+            <div class="input-place">
+              <label for="phone">No HP</label>
+              <input type="number" name="phone" id="phone" value='<%= locals.userData.no_hp %>'>
+            </div>
+
+            <div class="input-place">
+              <label for="jenis-kelamin">Jenis Kelamin</label>
+              <select name="jenis-kelamin" id="jenis-kelamin">
+                <option value="Laki-laki" <%= locals.userData.jenis_kelamin === 'Laki-laki' ? 'selected' : '' %>>Laki-laki</option>
+                <option value="Perempuan" <%= locals.userData.jenis_kelamin === 'Perempuan' ? 'selected' : '' %>>Perempuan</option>
+              </select>
+
+            </div>
+          </div>
+
+          <div class="input-place">
+            <label for="alamat">Alamat</label>
+            <Textarea name="alamat" id="alamat"><%= locals.userData.alamat %></Textarea>
+          </div>
+
+          <button class="button">Ubah</button>
+        </form>
+        <!-- <section class="statistik-pengaduan">
+            <article class="statistik-pengaduan-content" >
+                <h3>150</h3>
+                <p id="total">Total Pengaduan</p>
+            </article>
+             <article class="statistik-pengaduan-content">
+                <h3>150</h3>
+                <p id="diproses">Pengaduan Diproses</p>
+            </article> 
+            <article class="statistik-pengaduan-content">
+                <h3>150</h3>
+                <p id="selesai">Pengaduan Selesai</p>
+            </article>
+        </section> -->
+      </div>
+    </div>
+  </main>
+  <%- include("../../shared/includes/footer.ejs") %>
+</body>
+
+</html>

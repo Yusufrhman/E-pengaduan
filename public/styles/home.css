@@ -1,0 +1,151 @@
+#main-landing {
+  margin: 1rem auto;
+  margin-top: -10rem;
+  height: 45rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: url("/assets/images/desa-gelap.png");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+h1 {
+  color: var(--warna-putih);
+  font-size: 3rem;
+  margin: 0;
+}
+#main-landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 90%;
+}
+#main-landing-content-attribute {
+  font-size: 1rem;
+  padding: 0.25rem 0.6rem;
+  border: 0.1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+#main-landing-content-attribute span {
+  color: var(--warna-biru);
+}
+#main-landing-content-text {
+  font-size: 1.25rem;
+  color: var(--warna-border);
+  width: 60%;
+}
+#main-landing-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0;
+}
+#impact {
+  margin: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+#impact h2 {
+  font-size: 2rem;
+  color: var(--warna-abu);
+}
+#impact-list {
+  width: 70%;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.impact-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  box-shadow: 0px 0px 10px rgba(25, 25, 25, 0.3);
+  border-radius: 8px;
+  gap: 1rem;
+  flex: 1 0 20rem;
+}
+.impact-list-item h3 {
+  font-size: 1.75rem;
+}
+.impact-list-item h3,
+.impact-list-item p {
+  margin: 0;
+}
+#aduan-terbaru {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+#aduan-terbaru-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+}
+.aduan-terbaru-list-item {
+  flex: 0.25 0 23%;
+  height: 25rem;
+  width: 20rem;
+  border: 0.5px solid var(--warna-border2);
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px rgba(25, 25, 25, 0.3);
+  overflow: hidden;
+  transition: all 0.2s;
+}
+.aduan-terbaru-list-item:hover {
+  transform: scale(1.05);
+}
+.aduan-terbaru-list-item img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+.aduan-terbaru-content {
+  margin: 1rem;
+}
+.aduan-terbaru-list-item h3 {
+  font-size: 1rem;
+}
+@media (max-width: 54rem) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  #main-landing-content-text {
+    font-size: 1rem;
+  }
+  #impact h2 {
+    font-size: 1.75rem;
+  }
+  .aduan-terbaru-list-item {
+    flex: 0.25 0 90%;
+    height: 15rem;
+    margin: 0 auto;
+  }
+  .aduan-terbaru-list-item a {
+    display: flex;
+  }
+  .aduan-terbaru-list-item img {
+    height: 15rem;
+    width: 40%;
+    object-fit: cover;
+  }
+}

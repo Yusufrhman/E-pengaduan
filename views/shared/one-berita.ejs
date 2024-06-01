@@ -1,0 +1,26 @@
+<%- include("includes/head.ejs", {title: berita.judul_berita }) %>
+<link rel="stylesheet" href="/styles/one-berita.css">
+
+</head>
+
+<body>
+  <%- include("includes/header.ejs") %>
+  <%- include("includes/nav-bar.ejs") %>
+
+  <main>
+    <div>
+      <div id="berita-head">
+        <img src=<%=berita.image_url %> id= "berita-image" alt="">
+        <section>
+          <h3><%= berita.judul_berita %></h3>
+          <h4><%= berita.deskripsi_berita %></h4>
+          <p id="tanggal"><%= berita.waktu_berita %></p>
+        </section>
+        <p id="berita-content"><%= berita.isi_berita %></p>
+      </div>
+    </div>
+  </main>
+  <%- include("includes/footer.ejs") %>
+</body>
+
+</html>

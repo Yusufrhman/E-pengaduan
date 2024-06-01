@@ -1,0 +1,68 @@
+body {
+  font-family: inherit;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/assets/images/desa-gelap.png");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+main {
+  margin: 2rem;
+}
+.auth-container {
+  height: auto;
+  margin: 4rem auto;
+  max-width: 25rem;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 25px rgba(25, 25, 25, 0.3);
+  background-color: rgba(248, 248, 248, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--warna-hitam);
+}
+
+.auth-form h2 {
+  font-size: 1.75rem;
+  text-align: center;
+  color: var(--warna-biru-tua);
+}
+
+.input-place {
+  margin-bottom: 0.5rem;
+}
+
+.input-place label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-place input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+.button {
+  width: 100%;
+}
+
+button:hover {
+  background-color: var(--warna-border2);
+}
+#change-auth {
+  color: var(--warna-abu);
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.eye {
+}

@@ -1,0 +1,42 @@
+<%- include("../shared/includes/head.ejs", {title: "E-pengaduan: log-in"}) %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="styles/auth.css" />
+<script src="/auth.js" defer></script>
+
+<body>
+  <%- include("../shared/includes/header.ejs") %>
+  <%- include("../shared/includes/nav-bar.ejs") %>
+  <main>
+    <div class="auth-container">
+      <form class="auth-form" action="/login" method="post">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+        <h2>Masuk</h2>
+        <% if(loginData) {%>
+        <p id="error-message"><%= loginData.message %>!</p>
+        <div class="input-place">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" value="<%= loginData.email %>" required>
+        </div>
+        <div class="input-place">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" value="<%= loginData.password %>" required>
+        </div>
+        <% } else { %>
+        <div class="input-place">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" required>
+        </div>
+        <div class="input-place">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <% } %>
+        <button type="submit" class="button">Masuk</button>
+      </form>
+      <p id="change-auth">Belum punya akun? <a href="/signup" class="link-button">Daftar</a></p>
+    </div>
+  </main>
+</body>
+
+</html>
+<!doctype html>
